@@ -1,0 +1,34 @@
+[
+  {
+    "nombre": "Charizard",
+    "vidaMax": 100,
+    "vidaActual": 100,
+    "ataque": 25,
+    "defensa": 12,
+    "imagen": "Charizard.jpg"
+  },
+  {
+    "nombre": "Blastoise",
+    "vidaMax": 120,
+    "vidaActual": 120,
+    "ataque": 18,
+    "defensa": 20,
+    "imagen": "Blastoise.jpg"
+  },
+  {
+    "nombre": "Pikachu",
+    "vidaMax": 80,
+    "vidaActual": 80,
+    "ataque": 30,
+    "defensa": 8,
+    "imagen": "Pikachu.jpg"
+  },
+  {
+    "nombre": "Snorlax",
+    "vidaMax": 160,
+    "vidaActual": 160,
+    "ataque": 15,
+    "defensa": 10,
+    "imagen": "Snorlax.jpg"
+  }
+]
