@@ -1,0 +1,13 @@
+com\combate\utils\CargadorDatos.class
+com\combate\model\strategies\FuriaLoca.class
+com\combate\model\strategies\GolpeBasico.class
+com\combate\controllers\CombatController.class
+com\combate\controllers\SeleccionController$1.class
+com\combate\controllers\SeleccionController.class
+com\combate\App.class
+com\combate\model\Criatura.class
+com\combate\model\strategies\Habilidad.class
+com\combate\model\strategies\RoboVida.class
+module-info.class
+com\combate\model\strategies\SanacionRapida.class
+com\combate\utils\CargadorDatos$1.class

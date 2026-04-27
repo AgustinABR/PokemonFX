@@ -6,7 +6,8 @@ public class Criatura {
     public int vidaActual;
     public int ataque;    
     public int defensa; 
-    public String imagen; 
+    public String imagen;        
+    public String imagenCombate; 
 
     public void recibirDanio(int cantidad) {
         this.vidaActual -= cantidad;
@@ -17,4 +18,8 @@ public class Criatura {
         this.vidaActual += cantidad;
         if (this.vidaActual > vidaMax) this.vidaActual = vidaMax;
     }
+
+    public String getNombre() { return nombre; }
+    public int getVidaActual() { return vidaActual; }
+    public int getVidaMax() { return vidaMax; }
 }
