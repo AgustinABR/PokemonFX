@@ -1,0 +1,5 @@
+# Carpetas de compilación (Maven)
+target/
+
+# Archivos de configuración de VS Code
+.vscode/
