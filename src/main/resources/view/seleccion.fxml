@@ -11,33 +11,10 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <HBox alignment="CENTER" layoutX="25.0" layoutY="120.0" prefHeight="400.0" prefWidth="850.0" spacing="20.0">
-         <children>
-            <VBox fx:id="card0" alignment="CENTER" onMouseClicked="#seleccionarPokemon" prefWidth="200.0" spacing="10.0" style="-fx-border-color: #ccc; -fx-border-radius: 10; -fx-background-color: white; -fx-background-radius: 10; -fx-cursor: hand;">
-               <children>
-                  <ImageView fx:id="img0" fitHeight="150.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="info0" textAlignment="CENTER" />
-               </children>
-            </VBox>
-            <VBox fx:id="card1" alignment="CENTER" onMouseClicked="#seleccionarPokemon" prefWidth="200.0" spacing="10.0" style="-fx-border-color: #ccc; -fx-border-radius: 10; -fx-background-color: white; -fx-background-radius: 10; -fx-cursor: hand;">
-               <children>
-                  <ImageView fx:id="img1" fitHeight="150.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="info1" textAlignment="CENTER" />
-               </children>
-            </VBox>
-            <VBox fx:id="card2" alignment="CENTER" onMouseClicked="#seleccionarPokemon" prefWidth="200.0" spacing="10.0" style="-fx-border-color: #ccc; -fx-border-radius: 10; -fx-background-color: white; -fx-background-radius: 10; -fx-cursor: hand;">
-               <children>
-                  <ImageView fx:id="img2" fitHeight="150.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="info2" textAlignment="CENTER" />
-               </children>
-            </VBox>
-            <VBox fx:id="card3" alignment="CENTER" onMouseClicked="#seleccionarPokemon" prefWidth="200.0" spacing="10.0" style="-fx-border-color: #ccc; -fx-border-radius: 10; -fx-background-color: white; -fx-background-radius: 10; -fx-cursor: hand;">
-               <children>
-                  <ImageView fx:id="img3" fitHeight="150.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="info3" textAlignment="CENTER" />
-               </children>
-            </VBox>
-         </children>
-      </HBox>
+      <ScrollPane fitToWidth="true" layoutX="25.0" layoutY="120.0" prefHeight="420.0" prefWidth="850.0" style="-fx-background-color: transparent; -fx-background: #f4f4f4;">
+         <content>
+            <FlowPane fx:id="panelCriaturas" hgap="20.0" prefWrapLength="800.0" style="-fx-padding: 20;" vgap="20.0" />
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>
