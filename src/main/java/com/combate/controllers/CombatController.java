@@ -4,8 +4,12 @@ import com.combate.model.Criatura;
 import com.combate.model.LogicaCombate;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
+import javafx.stage.Stage;
 
 public class CombatController {
 
@@ -14,7 +18,7 @@ public class CombatController {
     @FXML private Label lblVida, lblVidaRival, lblNombreJugador, lblNombreRival; 
     @FXML private TextArea txtHistorial; 
     @FXML private ImageView imgJugador, imgRival; 
-    @FXML private Button btnAtaque1, btnAtaque2, btnAtaque3, btnAtaque4;
+    @FXML private Button btnAtaque1, btnAtaque2, btnAtaque3, btnAtaque4, btnVolver;
 
     private Criatura jugador, rival;
     private LogicaCombate logica; // Referencia a la clase de lógica
@@ -40,6 +44,9 @@ public class CombatController {
         
         actualizarInterfaz();
         txtHistorial.setText("¡El combate comienza!");
+
+        // Ocultamos el botón de volver al iniciar un nuevo combate
+        btnVolver.setVisible(false);
     }
 
     /**
@@ -123,7 +130,32 @@ public class CombatController {
      */
     private void finalizarCombate() {
         txtHistorial.appendText("\n" + logica.obtenerResultadoFinal());
-        btnAtaque1.setDisable(true); btnAtaque2.setDisable(true);
-        btnAtaque3.setDisable(true); btnAtaque4.setDisable(true);
+        
+        // Bloqueamos los botones de ataque al terminar
+        btnAtaque1.setDisable(true); 
+        btnAtaque2.setDisable(true);
+        btnAtaque3.setDisable(true); 
+        btnAtaque4.setDisable(true);
+        
+        // Hacemos visible el botón para regresar a la selección
+        btnVolver.setVisible(true);
+    }
+
+    /**
+     * Maneja el evento para volver a la pantalla de selección.
+     */
+    @FXML
+    void volverSeleccion() {
+        try {
+            // Cargar el archivo de la pantalla de selección
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/seleccion.fxml")); 
+            Parent root = loader.load();
+
+            // Obtener la ventana actual y cambiar la escena
+            Stage stage = (Stage) btnVolver.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
