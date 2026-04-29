@@ -28,6 +28,19 @@ public class LogicaCombate {
             case 4: // Furia
                 rival.recibirDanio(35);
                 return jugador.nombre + " ¡ESTÁ FURIOSO!";
+            case 5: 
+                if(jugador.vidaActual % 2 == 0) {
+                    int danio = rival.vidaActual / 2;
+        
+                    if (danio >= rival.vidaActual) {
+                        rival.vidaActual = 1;
+                    } else {
+                        rival.vidaActual -= danio;
+                    }
+                    return  jugador.nombre + " usa habilidad especial";
+                } else {
+                    return jugador.nombre + " intento usar habilidad especial pero su vida no es par";
+                }
             default:
                 return "";
         }
@@ -56,4 +69,5 @@ public class LogicaCombate {
         if (jugador.vidaActual <= 0) return "Has perdido el combate...";
         return "";
     }
+
 }

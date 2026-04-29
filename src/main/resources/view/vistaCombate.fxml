@@ -23,5 +23,6 @@
       <TextArea fx:id="txtHistorial" editable="false" focusTraversable="false" layoutX="6.0" layoutY="287.0" prefHeight="99.0" prefWidth="588.0" />
       <Label fx:id="lblVidaRival" layoutX="543.0" layoutY="225.0" text="Label" />
       <Button fx:id="btnVolver" layoutX="230.0" layoutY="180.0" mnemonicParsing="false" onAction="#volverSeleccion" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-cursor: hand;" text="Volver al Menú" visible="false" />
+      <Button fx:id="btnAtaque5" layoutX="349.0" layoutY="252.0" mnemonicParsing="false" onAction="#habilidadEspecial" text="Habilidad Especial" />
    </children>
 </AnchorPane>

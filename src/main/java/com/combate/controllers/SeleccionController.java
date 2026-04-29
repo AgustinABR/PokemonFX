@@ -1,8 +1,15 @@
 package com.combate.controllers;
 
+import java.awt.Desktop;
+import java.io.InputStreamReader;
+import java.net.URI;
+import java.util.List;
+import java.util.Random;
+
 import com.combate.model.Criatura;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,9 +20,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import java.io.InputStreamReader;
-import java.util.List;
-import java.util.Random;
 
 public class SeleccionController {
 
@@ -79,4 +83,14 @@ public class SeleccionController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void abrirRepositorio() {
+        try {
+            Desktop.getDesktop().browse(new URI("https://github.com/AgustinABR/PokemonFX"));
+        } catch (Exception e) {
+            System.out.println("Enlace erroneo!!");
+        }
+    }
+
 }

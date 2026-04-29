@@ -2,13 +2,18 @@ package com.combate.controllers;
 
 import com.combate.model.Criatura;
 import com.combate.model.LogicaCombate;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.image.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class CombatController {
@@ -18,7 +23,7 @@ public class CombatController {
     @FXML private Label lblVida, lblVidaRival, lblNombreJugador, lblNombreRival; 
     @FXML private TextArea txtHistorial; 
     @FXML private ImageView imgJugador, imgRival; 
-    @FXML private Button btnAtaque1, btnAtaque2, btnAtaque3, btnAtaque4, btnVolver;
+    @FXML private Button btnAtaque1, btnAtaque2, btnAtaque3, btnAtaque4, btnAtaque5, btnVolver;
 
     private Criatura jugador, rival;
     private LogicaCombate logica; // Referencia a la clase de lógica
@@ -64,24 +69,31 @@ public class CombatController {
             btnAtaque2.setText("Onda Trueno");
             btnAtaque3.setDisable(true); btnAtaque3.setText("---"); // Pikachu no se cura
             btnAtaque4.setText("Rayo");
+            btnAtaque5.getText();
         } 
         else if (nombre.contains("charizard")) {
             btnAtaque1.setText("Lanzallamas");
             btnAtaque2.setDisable(true); btnAtaque2.setText("---"); // Charizard no roba vida
             btnAtaque3.setText("Respiro");
             btnAtaque4.setText("Llamarada");
+            btnAtaque5.getText();
+
         } 
         else if (nombre.contains("blastoise")) {
             btnAtaque1.setText("Hidrobomba");
             btnAtaque2.setText("Pistola Agua");
             btnAtaque3.setText("Refugio");
             btnAtaque4.setDisable(true); btnAtaque4.setText("---"); // Blastoise no usa furia
+            btnAtaque5.getText();
+
         }
         else if (nombre.contains("snorlax")) {
             btnAtaque1.setText("Golpe Cuerpo");
             btnAtaque2.setText("Lengüetazo");
             btnAtaque3.setText("Descanso");
             btnAtaque4.setDisable(true); btnAtaque4.setText("---"); // Snorlax es vago para la furia
+            btnAtaque5.getText();
+
         }
     }
 
@@ -100,6 +112,9 @@ public class CombatController {
     @FXML void usarRoboVida(ActionEvent event) { procesarTurno(2, btnAtaque2.getText()); }
     @FXML void usarSanacion(ActionEvent event) { procesarTurno(3, btnAtaque3.getText()); }
     @FXML void usarFuria(ActionEvent event) { procesarTurno(4, btnAtaque4.getText()); }
+    @FXML void habilidadEspecial(ActionEvent event) { procesarTurno(5, btnAtaque5.getText()); }
+
+    
 
     /**
      * Gestiona la secuencia: Ataque Jugador -> ¿Muerte? -> Ataque Rival -> ¿Muerte?
@@ -136,6 +151,7 @@ public class CombatController {
         btnAtaque2.setDisable(true);
         btnAtaque3.setDisable(true); 
         btnAtaque4.setDisable(true);
+        btnAtaque5.setDisable(true);
         
         // Hacemos visible el botón para regresar a la selección
         btnVolver.setVisible(true);

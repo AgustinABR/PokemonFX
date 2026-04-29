@@ -34,5 +34,14 @@
     "defensa": 30,
     "imagen": "/img/Snorlax.jpg",
     "imagenCombate": "/img/Snorlax_ataque.jpg"
+  },
+  {
+    "nombre": "Mewtwo",
+    "vidaMax": 200,
+    "vidaActual": 200,
+    "ataque": 50,
+    "defensa": 80,
+    "imagen": "/img/Snorlax.jpg",
+    "imagenCombate": "/img/Snorlax_ataque.jpg" 
   }
 ]
