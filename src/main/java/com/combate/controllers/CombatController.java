@@ -11,25 +11,54 @@ import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.stage.Stage;
 
+/**
+ * Controlador de la interfaz de combate en JavaFX.
+ * Gestiona la interacción del usuario durante la batalla, actualiza los componentes 
+ * visuales (barras de vida, imágenes, historial) y coordina los turnos 
+ * a través de la lógica de negocio.
+ * 
+ * @author Lourdes Molina y Agustín
+ * @version 1.0
+ */
 public class CombatController {
 
-    // Componentes vinculados al archivo FXML
+    // --- Componentes vinculados al archivo FXML ---
+    
+    /** Barras de progreso que representan la salud actual del jugador y el rival. */
     @FXML private ProgressBar barraJugador, barraRival;
+    
+    /** Etiquetas para mostrar la salud numérica y los nombres de los contendientes. */
     @FXML private Label lblVida, lblVidaRival, lblNombreJugador, lblNombreRival; 
+    
+    /** Área de texto donde se narran los sucesos del combate. */
     @FXML private TextArea txtHistorial; 
+    
+    /** Contenedores para los sprites o imágenes de los Pokémon en combate. */
     @FXML private ImageView imgJugador, imgRival; 
+    
+    /** Botones de acción para ataques y navegación. */
     @FXML private Button btnAtaque1, btnAtaque2, btnAtaque3, btnAtaque4, btnVolver;
 
-    private Criatura jugador, rival;
-    private LogicaCombate logica; // Referencia a la clase de lógica
+    /** Instancia del Pokémon controlado por el usuario. */
+    private Criatura jugador;
+    
+    /** Instancia del Pokémon controlado por la IA. */
+    private Criatura rival;
+    
+    /** Motor de reglas que procesa los cálculos de daño y estados. */
+    private LogicaCombate logica;
 
     /**
-     * Recibe los datos de la pantalla de selección e inicializa el combate.
+     * Inicializa la escena de combate con los datos transferidos desde la selección.
+     * Configura las imágenes, nombres, botones y el motor de lógica.
+     * 
+     * @param jugador Objeto Criatura seleccionado por el usuario.
+     * @param rival Objeto Criatura seleccionado como oponente.
      */
     public void setDatos(Criatura jugador, Criatura rival) {
         this.jugador = jugador;
         this.rival = rival;
-        this.logica = new LogicaCombate(jugador, rival); // Iniciamos el cerebro del combate
+        this.logica = new LogicaCombate(jugador, rival); 
         
         // Carga de imágenes de combate 
         imgJugador.setImage(new Image(getClass().getResourceAsStream(jugador.imagenCombate)));
@@ -50,7 +79,9 @@ public class CombatController {
     }
 
     /**
-     * Configura textos y bloquea botones específicos para cada criatura.
+     * Personaliza la interfaz de botones de ataque según la criatura elegida.
+     * Cambia el texto de los botones y deshabilita aquellos ataques que la 
+     * criatura no posee según su diseño.
      */
     private void configurarBotonesPorPokemon() {
         // Habilitamos todos por defecto antes de filtrar
@@ -62,12 +93,12 @@ public class CombatController {
         if (nombre.contains("pikachu")) {
             btnAtaque1.setText("Impactrueno");
             btnAtaque2.setText("Onda Trueno");
-            btnAtaque3.setDisable(true); btnAtaque3.setText("---"); // Pikachu no se cura
+            btnAtaque3.setDisable(true); btnAtaque3.setText("---"); 
             btnAtaque4.setText("Rayo");
         } 
         else if (nombre.contains("charizard")) {
             btnAtaque1.setText("Lanzallamas");
-            btnAtaque2.setDisable(true); btnAtaque2.setText("---"); // Charizard no roba vida
+            btnAtaque2.setDisable(true); btnAtaque2.setText("---"); 
             btnAtaque3.setText("Respiro");
             btnAtaque4.setText("Llamarada");
         } 
@@ -75,18 +106,19 @@ public class CombatController {
             btnAtaque1.setText("Hidrobomba");
             btnAtaque2.setText("Pistola Agua");
             btnAtaque3.setText("Refugio");
-            btnAtaque4.setDisable(true); btnAtaque4.setText("---"); // Blastoise no usa furia
+            btnAtaque4.setDisable(true); btnAtaque4.setText("---"); 
         }
         else if (nombre.contains("snorlax")) {
             btnAtaque1.setText("Golpe Cuerpo");
             btnAtaque2.setText("Lengüetazo");
             btnAtaque3.setText("Descanso");
-            btnAtaque4.setDisable(true); btnAtaque4.setText("---"); // Snorlax es vago para la furia
+            btnAtaque4.setDisable(true); btnAtaque4.setText("---"); 
         }
     }
 
     /**
-     * Refresca las barras de vida y los textos numéricos.
+     * Sincroniza los datos del modelo con los componentes visuales.
+     * Actualiza las ProgressBar de salud y las etiquetas de texto de vida actual/máxima.
      */
     private void actualizarInterfaz() {
         barraJugador.setProgress((double) jugador.vidaActual / jugador.vidaMax);
@@ -95,14 +127,37 @@ public class CombatController {
         lblVidaRival.setText(rival.vidaActual + " / " + rival.vidaMax);
     }
 
-    // Eventos de los botones: llaman a procesarTurno pasando el ID del ataque
+    /**
+     * Ejecuta el ataque de tipo "Golpe Básico" del jugador.
+     * @param event Evento de acción del botón.
+     */
     @FXML void usarGolpeBasico(ActionEvent event) { procesarTurno(1, btnAtaque1.getText()); }
+
+    /**
+     * Ejecuta el ataque de tipo "Robo Vida" del jugador.
+     * @param event Evento de acción del botón.
+     */
     @FXML void usarRoboVida(ActionEvent event) { procesarTurno(2, btnAtaque2.getText()); }
+
+    /**
+     * Ejecuta la habilidad de tipo "Sanación" del jugador.
+     * @param event Evento de acción del botón.
+     */
     @FXML void usarSanacion(ActionEvent event) { procesarTurno(3, btnAtaque3.getText()); }
+
+    /**
+     * Ejecuta el ataque de tipo "Furia" del jugador.
+     * @param event Evento de acción del botón.
+     */
     @FXML void usarFuria(ActionEvent event) { procesarTurno(4, btnAtaque4.getText()); }
 
     /**
-     * Gestiona la secuencia: Ataque Jugador -> ¿Muerte? -> Ataque Rival -> ¿Muerte?
+     * Controla el flujo del combate por turnos. 
+     * Primero procesa la acción del jugador, verifica si el combate ha terminado, 
+     * y si no, procesa la respuesta automática del rival.
+     * 
+     * @param tipoAtaque Identificador entero del tipo de ataque a realizar.
+     * @param nombreAtaque Nombre legible del ataque para el historial.
      */
     private void procesarTurno(int tipoAtaque, String nombreAtaque) {
         // 1. Acción del Jugador
@@ -126,7 +181,9 @@ public class CombatController {
     }
 
     /**
-     * Muestra el resultado final y bloquea la entrada del usuario.
+     * Finaliza la sesión de combate. 
+     * Inhabilita los controles de ataque, muestra el mensaje de victoria/derrota 
+     * y habilita el botón para regresar al menú principal.
      */
     private void finalizarCombate() {
         txtHistorial.appendText("\n" + logica.obtenerResultadoFinal());
@@ -142,7 +199,8 @@ public class CombatController {
     }
 
     /**
-     * Maneja el evento para volver a la pantalla de selección.
+     * Cambia la escena actual para regresar a la pantalla de selección de personajes.
+     * Carga el archivo FXML correspondiente y lo establece en el Stage actual.
      */
     @FXML
     void volverSeleccion() {
